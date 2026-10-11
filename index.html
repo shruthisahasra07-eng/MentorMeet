@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f5ff" />
+  <title>MentorMeet — Find guidance. Make progress.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <section class="auth-screen" id="authScreen">
+    <div class="auth-left">
+      <a class="brand auth-brand" href="#" aria-label="MentorMeet home"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span>Mentor<span class="brand-light">Meet</span></span></a>
+      <div class="auth-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT STEP STARTS HERE</div>
+        <h1>Great things<br>start with a <span>conversation.</span></h1>
+        <p>Connect with people who've been there. Get guidance, build confidence, and take your next step with MentorMeet.</p>
+        <div class="auth-benefits">
+          <div><span>✓</span><p><strong>Guidance that gets you</strong><small>Find support for academics, projects, and your career.</small></p></div>
+          <div><span>✓</span><p><strong>Your time, respected</strong><small>Book a slot that fits your schedule.</small></p></div>
+          <div><span>✓</span><p><strong>Progress you can see</strong><small>Keep every mentoring session in one place.</small></p></div>
+        </div>
+      </div>
+      <div class="auth-footnote">MENTORMEET · FIND GUIDANCE. MAKE PROGRESS.</div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-card">
+        <div class="auth-mobile-brand"><span class="brand-mark"><span></span><span></span><span></span><span></span></span><span>Mentor<span class="brand-light">Meet</span></span></div>
+        <div class="auth-welcome">WELCOME BACK</div>
+        <h2>Sign in to your<br><span>next opportunity.</span></h2>
+        <p class="auth-subtitle">Enter your details to access your mentoring space.</p>
+        <form id="loginForm" novalidate>
+          <label class="field"><span>Email address</span><input id="loginEmail" type="email" autocomplete="username" placeholder="student@college.edu" required><small class="error" id="loginEmailError"></small></label>
+          <label class="field password-field"><span>Password</span><div class="password-wrap"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" id="togglePassword" class="password-toggle" aria-label="Show password">Show</button></div><small class="error" id="loginPasswordError"></small></label>
+          <div class="login-options"><label class="remember-option"><input type="checkbox" id="rememberMe" checked> <span>Remember me</span></label><span class="demo-label">DEMO ACCESS</span></div>
+          <div class="login-alert" id="loginAlert" role="alert" aria-live="polite"></div>
+          <button class="primary-btn login-btn" type="submit">Sign in <span>↗</span></button>
+        </form>
+        <div class="auth-separator"><span></span><small>OR TRY THE DEMO</small><span></span></div>
+        <button class="demo-btn" id="demoLoginBtn" type="button"><span class="demo-avatar">ST</span><span><strong>Continue as a student</strong><small>Book and manage your sessions</small></span><b>→</b></button>
+        <button class="demo-btn mentor-demo-btn" id="mentorDemoLoginBtn" type="button"><span class="demo-avatar">ME</span><span><strong>Continue as a mentor</strong><small>View incoming appointments</small></span><b>→</b></button>
+        <div class="demo-credentials"><strong>Student demo</strong><span>Email: student@mentormeet.demo</span><span>Password: mentor123</span><strong>Mentor demo</strong><span>Email: mentor@mentormeet.demo</span><span>Password: mentor123</span></div>
+        <p class="auth-privacy">Demo access is a front-end prototype. It does not create secure accounts or verify identity on a server.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell" id="appShell" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="MentorMeet home">
+        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+        <span>Mentor<span class="brand-light">Meet</span></span>
+      </a>
+      <p class="side-label" id="workspaceLabel">STUDENT WORKSPACE</p>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="book" id="studentBookNav"><span class="nav-icon">✳</span> Book mentoring</button>
+        <button class="nav-item" data-view="appointments" id="studentSessionsNav"><span class="nav-icon">▦</span> My sessions <span class="nav-count" id="navCount">0</span></button>
+        <button class="nav-item" data-view="mentorDashboard" id="mentorInboxNav" hidden><span class="nav-icon">▤</span> Incoming requests <span class="nav-count" id="mentorNavCount">0</span></button>
+      </nav>
+      <div class="sidebar-note">
+        <div class="note-orb">✦</div>
+        <p class="note-title">Guidance for your next step.</p>
+        <p class="note-copy">Connect with faculty mentors, project guides, and career coaches.</p>
+      </div>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Your growth, one conversation at a time</div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="crumbCurrent">Book mentoring</strong></div>
+        <div class="top-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">◐</button><button class="signout-btn" id="signOutBtn" type="button">Sign out ↗</button>
+          <div class="role-chip" id="roleChip">STUDENT PORTAL</div><div class="avatar" id="userAvatar">ST</div>
+        </div>
+      </header>
+
+      <section class="view active" id="bookView">
+        <div class="hero">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT STEP STARTS HERE</div>
+            <h1>You don't have to<br><span>figure it out alone.</span></h1>
+            <p class="hero-copy">Book time with a mentor who can help you move forward with clarity and confidence.</p>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-ring ring-one"></div><div class="art-ring ring-two"></div>
+            <div class="art-card"><span class="art-spark">✦</span><span class="art-card-day">YOUR NEXT CHAPTER</span><strong>Big goals begin<br>with one conversation.</strong><span class="art-card-line"></span></div>
+            <span class="art-star star-a">✧</span><span class="art-star star-b">✦</span>
+          </div>
+        </div>
+
+        <div class="booking-layout">
+          <section class="panel booking-panel">
+            <div class="panel-heading">
+              <div><span class="step-label">STEP 01</span><h2>Let's get to know you</h2><p>Share your details so your mentor knows who they're meeting.</p></div>
+              <span class="heading-icon">♡</span>
+            </div>
+            <form id="bookingForm" novalidate>
+              <div class="form-grid">
+                <label class="field"><span>Student name <b>*</b></span><input id="fullName" name="fullName" autocomplete="name" placeholder="e.g. Aanya Sharma" maxlength="70" required><small class="error" id="nameError"></small></label>
+                <label class="field"><span>College email address <b>*</b></span><input id="email" name="email" type="email" autocomplete="email" placeholder="you@college.edu" required><small class="error" id="emailError"></small></label>
+                <label class="field"><span>Phone number <b>*</b></span><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+91 98765 43210" required><small class="error" id="phoneError"></small></label>
+                <label class="field"><span>What would you like help with? <b>*</b></span><select id="service" name="service" required><option value="">Choose a mentoring topic</option><option>Career planning</option><option>Academic guidance</option><option>Project / hackathon</option><option>Internship preparation</option><option>Other mentoring topic</option></select><small class="error" id="serviceError"></small></label>
+                <label class="field"><span>Choose your mentor <b>*</b></span><select id="mentor" name="mentor" required><option value="">Choose a mentor</option><option value="Dr. Meera Iyer — Faculty Mentor">Dr. Meera Iyer · Faculty Mentor</option><option value="Arjun Nair — AI & Project Guide">Arjun Nair · AI & Project Guide</option><option value="Kavya Raman — Career Coach">Kavya Raman · Career Coach</option><option value="Rahul Menon — Innovation Mentor">Rahul Menon · Innovation Mentor</option></select><small class="error" id="mentorError"></small></label>
+              </div>
+              <div class="mentor-note"><span class="mentor-note-icon">✦</span><div><strong>Good guidance starts with a good question.</strong><p>Pick the mentor whose experience best matches the challenge you're working through.</p></div></div>
+              <label class="field full-field"><span>Tell your mentor a little more <em>Optional</em></span><textarea id="notes" name="notes" rows="3" maxlength="300" placeholder="What are you working on, and where are you stuck?…"></textarea><div class="field-foot"><small>A little context helps your mentor prepare.</small><small id="charCount">0 / 300</small></div></label>
+
+              <div class="section-rule"></div>
+              <div class="panel-heading compact">
+                <div><span class="step-label">STEP 02</span><h2>Find your mentoring slot</h2><p>Choose a day and time that fits your college schedule.</p></div>
+                <span class="heading-icon">◷</span>
+              </div>
+              <div class="schedule-grid">
+                <div class="calendar-wrap">
+                  <div class="calendar-top"><button type="button" class="month-arrow" id="prevMonth" aria-label="Previous month">‹</button><strong id="monthLabel"></strong><button type="button" class="month-arrow" id="nextMonth" aria-label="Next month">›</button></div>
+                  <div class="weekdays"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+                  <div class="calendar-days" id="calendarDays" aria-label="Choose a date"></div>
+                  <div class="calendar-legend"><span><i class="legend-dot available"></i> Available</span><span><i class="legend-dot selected-dot"></i> Selected</span></div>
+                </div>
+                <div class="slots-wrap">
+                  <div class="slots-heading"><div><h3>Available times</h3><p id="selectedDateLabel">Choose a date to see times</p></div><span class="timezone">IST · UTC+5:30</span></div>
+                  <div class="slots-grid" id="slotsGrid"><div class="empty-slots">← Select a date first</div></div>
+                  <p class="slot-hint"><span>ⓘ</span> Slots are 30 minutes. Booked times are locked.</p>
+                </div>
+              </div>
+              <div class="form-alert" id="formAlert" role="alert" aria-live="polite"></div>
+              <div class="submit-row"><div class="secure-note"><span>♧</span><span>Your details stay on this device.</span></div><button class="primary-btn" type="submit">Confirm appointment <span>↗</span></button></div>
+            </form>
+          </section>
+
+          <aside class="booking-aside">
+            <div class="summary-card">
+              <div class="summary-top"><span class="summary-icon">✦</span><span class="summary-tag">YOUR PLAN</span></div>
+              <h3>A conversation<br>that moves you forward.</h3>
+              <p>Bring your questions. Leave with a clearer next step.</p>
+              <div class="summary-divider"></div>
+              <div class="summary-row"><span>◷</span><div><small>DATE & TIME</small><strong id="summaryDate">Not selected yet</strong><p id="summaryTime">Choose a slot to continue</p></div></div>
+              <div class="summary-row"><span>◉</span><div><small>MENTORING TOPIC</small><strong id="summaryService">Your mentoring topic</strong><p>30-minute mentoring session</p></div></div><div class="summary-row"><span>✦</span><div><small>YOUR MENTOR</small><strong id="summaryMentor">Choose a mentor</strong><p>Guidance tailored to your goals</p></div></div>
+              <div class="summary-footer"><span class="mini-check">✓</span> Free student mentoring demo</div>
+            </div>
+            <div class="tip-card"><span class="tip-icon">✧</span><div><strong>Make the most of it</strong><p>Bring a goal, question, or draft. Even a rough starting point is enough.</p></div></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view mentor-dashboard" id="mentorDashboardView">
+        <div class="mentor-welcome"><div><div class="eyebrow"><span class="eyebrow-dot"></span> MENTOR WORKSPACE</div><h1>Good day, <span>Mentor.</span></h1><p class="hero-copy">Review each request, decide based on your availability, and track your sessions.</p></div><div class="mentor-welcome-icon"><span class="mentor-orbit">✦</span><small>MENTOR<br>DESK</small></div></div>
+        <div class="stats-grid mentor-stats">
+          <div class="stat-card"><span class="stat-icon purple">▤</span><small>ALL REQUESTS</small><strong id="mentorTotalStat">0</strong><span>Student appointment requests</span></div>
+          <div class="stat-card"><span class="stat-icon orange">◷</span><small>NEEDS YOUR DECISION</small><strong id="mentorPendingStat">0</strong><span>Awaiting approval or rejection</span></div>
+          <div class="stat-card"><span class="stat-icon green">✓</span><small>APPROVED SESSIONS</small><strong id="mentorConfirmedStat">0</strong><span>Accepted by you</span></div>
+        </div>
+        <div class="mentor-filterbar"><div><h2>Appointment requests</h2><p>Approve or reject pending requests. Mark approved sessions complete after they end.</p></div><select id="mentorRequestFilter" aria-label="Filter incoming requests"><option value="all">All requests</option><option value="pending">Needs decision</option><option value="confirmed">Approved</option><option value="declined">Rejected</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></div>
+        <div id="mentorRequestsList" class="mentor-request-list"></div>
+      </section>
+
+      <section class="view" id="appointmentsView">
+        <div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR PERSONAL SPACE</div><h1>Your <span>mentoring sessions.</span></h1><p class="hero-copy">Your upcoming mentor conversations, all in one place.</p></div><button class="primary-btn" id="newBookingBtn">＋ New booking</button></div>
+        <div class="stats-grid">
+          <div class="stat-card"><span class="stat-icon purple">▦</span><small>TOTAL BOOKINGS</small><strong id="totalStat">0</strong><span>All your sessions</span></div>
+          <div class="stat-card"><span class="stat-icon green">◷</span><small>UPCOMING</small><strong id="upcomingStat">0</strong><span>Still ahead of you</span></div>
+          <div class="stat-card"><span class="stat-icon orange">✓</span><small>COMPLETED</small><strong id="completedStat">0</strong><span>Time well spent</span></div>
+        </div>
+        <div class="panel appointments-panel"><div class="list-heading"><div><h2>Your mentoring schedule</h2><p>Review, track, or cancel a mentoring session.</p></div><select id="appointmentFilter" aria-label="Filter appointments"><option value="all">All appointments</option><option value="upcoming">Upcoming</option><option value="cancelled">Cancelled</option><option value="completed">Completed</option></select></div><div id="appointmentsList"></div></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="successModal" aria-hidden="true">
+    <div class="success-modal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close">×</button>
+      <div class="success-check">✓</div><div class="eyebrow centered">YOUR MENTORING SESSION IS CONFIRMED</div><h2 id="successTitle">You're all <span>set.</span></h2><p class="modal-copy">Your session is saved. Here's your confirmation pass.</p>
+      <div class="pass-card"><div class="pass-head"><span>MENTORMEET · STUDENT SESSION PASS</span><span class="pass-status">CONFIRMED</span></div><h3 id="passService">Academic guidance</h3><p class="pass-mentor" id="passMentor">Mentor not selected</p><div class="pass-details"><div><small>DATE</small><strong id="passDate"></strong></div><div><small>TIME</small><strong id="passTime"></strong></div></div><div class="pass-code-row"><div><small>REFERENCE ID</small><strong id="passId"></strong></div><span class="pass-spark">✦</span></div></div>
+      <button class="primary-btn modal-main-btn" id="viewAppointmentsBtn">View my sessions <span>→</span></button><button class="text-btn" id="bookAnotherBtn">Book another session</button>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="cancelModal" aria-hidden="true"><div class="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="cancelTitle"><div class="confirm-icon">?</div><h2 id="cancelTitle">Cancel this mentoring session?</h2><p>This will release the time slot for another student. You can book a new session anytime.</p><div class="confirm-actions"><button class="secondary-btn" id="keepBookingBtn">Keep appointment</button><button class="danger-btn" id="confirmCancelBtn">Yes, cancel it</button></div></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
